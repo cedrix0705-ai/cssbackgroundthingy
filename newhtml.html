@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Background</title>
+	<style>
+		* { box-sizing: border-box; }
+
+		html, body {
+			width: 100%;
+			min-height: 100%;
+			margin: 0;
+		}
+
+		body {
+			min-height: 100vh;
+			overflow: hidden;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 2vh 0 0 2vw;
+			color: white;
+			font-family: Arial, sans-serif;
+		}
+
+		.background-video {
+			position: fixed;
+			inset: -20px;
+			z-index: -1;
+			width: calc(100% + 40px);
+			height: calc(100% + 40px);
+			object-fit: fill;
+			filter: blur(10px);
+		}
+
+		.content {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.5vh;
+		}
+
+		.corner-image {
+			width: 20vw;
+			height: 20vw;
+			max-width: 20vh;
+			max-height: 20vh;
+			min-width: 80px;
+			min-height: 80px;
+			object-fit: cover;
+			display: block;
+			border-radius: 0;
+		}
+
+		audio {
+			width: 90vw;
+			height: 3vh;
+			min-height: 24px;
+			display: block;
+			background: transparent;
+			accent-color: white;
+		}
+
+		.lyrics-box {
+			position: fixed;
+			z-index: 1;
+			left: 50%;
+			bottom: 20px;
+			transform: translateX(-50%);
+			width: min(90vw, 720px);
+			max-height: 32vh;
+			padding: 20px 24px;
+			overflow: auto;
+			color: #3f3025;
+			background: #e8d5b5;
+			border: 2px solid #c4a982;
+			border-radius: 10px;
+			box-shadow: 0 8px 22px rgba(0, 0, 0, .3);
+			text-align: center;
+		}
+
+		.lyrics-box::before {
+			content: "";
+			position: absolute;
+			z-index: -1;
+			inset: 0;
+			background: #c9ad83;
+			border-radius: inherit;
+			animation: fall-in 3s ease-in-out infinite;
+			transform-origin: top center;
+		}
+
+		@keyframes fall-in {
+			0%, 100% { transform: translateY(-115%) scale(.92); opacity: .25; }
+			45%, 70% { transform: translateY(0) scale(1); opacity: .8; }
+		}
+	</style>
+</head>
+<body>
+	<video class="background-video" autoplay muted loop playsinline aria-hidden="true">
+		<source src="cozyguitarbg.mp4" type="video/mp4">
+	</video>
+	<main class="content">
+		<img class="corner-image" src="coffee.jpg" alt="Decorative image">
+		<audio controls aria-label="Audio player">
+			<source src="Beabadoobee - Coffee.mp3" type="audio/mpeg">
+		</audio>
+	</main>
+	<div class="lyrics-box" aria-label="Song lyrics">
+		<p>Lyrics cannot be reproduced here. Add your own licensed lyrics text to this box.</p>
+	</div>
+    
+</body>
+</html>
