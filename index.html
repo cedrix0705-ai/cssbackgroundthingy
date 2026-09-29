@@ -1,18 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Background Showcase</title>
-    <link rel="stylesheet" href="./styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Background</title>
+	<style>
+		* { box-sizing: border-box; }
+		:root { --txt: #fff; --shadow: 0 12px 30px rgba(0,0,0,.25); }
+		html, body {
+			width: 100%;
+			min-height: 100%;
+			margin: 0;
+		}
+
+		body {
+			min-height: 100%;
+			position: relative;
+			background: lavender;
+			color: var(--txt);
+			font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+			overflow-y: scroll;
+		}
+		.panel {
+			position: relative;
+			height: 100vh;
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+			text-align: center;
+			isolation: isolate;
+			background-position: center;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+		.panel > video {
+			position: fixed;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			z-index: -1;
+			pointer-events: none;
+		}
+		.panel::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45));
+		}
+		.panel > .content {
+			position: relative;
+			z-index: 1;
+			width: 100%;
+			padding: 24px 24px 90px;
+			align-items: center;
+		}
+		.panel .lyrics {
+			width: min(90vw, 720px);
+			max-width: min(90vw, 720px);
+			padding: 24px;
+			white-space: pre-line;
+			line-height: 1.6;
+			text-shadow: 0 2px 8px rgba(0,0,0,.8);
+		}
+		h1, h2 { margin: 0 0 8px; }
+		.panel p { margin: 0; opacity: .9; }
+
+		.content {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.5vh;
+		}
+		audio {
+			position: fixed;
+			z-index: 10;
+			left: 50%;
+			bottom: 20px;
+			transform: translateX(-50%);
+			width: min(90vw, 520px);
+			opacity: 0.1;
+			background-color: transparent;
+		}
+		audio::-webkit-media-controls-panel {
+			background-color: transparent !important;
+		}
+		audio::-webkit-media-controls-enclosure {
+			background-color: transparent !important;
+		}
+.transparent-audio {
+      mix-blend-mode: multiply;
+      filter: invert(1) hue-rotate(180deg); }
+		.lyrics-box {
+			position: fixed;
+			z-index: 1;
+			left: 50%;
+			bottom: 20px;
+			transform: translateX(-50%);
+			width: min(90vw, 720px);
+			max-height: 32vh;
+			padding: 20px 24px;
+			overflow: auto;
+			color: #3f3025;
+			background: #e8d5b5;
+			border: 2px solid #c4a982;
+			border-radius: 10px;
+			box-shadow: 0 8px 22px rgba(0, 0, 0, .3);
+			text-align: center;
+		}
+
+		.lyrics-box::before {
+			content: "";
+			position: absolute;
+			z-index: -1;
+			inset: 0;
+			background: #c9ad83;
+			border-radius: inherit;
+			animation: fall-in 3s ease-in-out infinite;
+			transform-origin: top center;
+		}
+
+		@keyframes fall-in {
+			0%, 100% { transform: translateY(-115%) scale(.92); opacity: .25; }
+			45%, 70% { transform: translateY(0) scale(1); opacity: .8; }
+		}
+		.lyrics-box { display: none; }
+	</style>
 </head>
 <body>
-    <div class="background-container">
-        <div class="card">
-            <h1>cssbackgroundthingy</h1>
-            <p>Your custom background styling will render behind this container.</p>
-        </div>
-    </div>
+	
+		<section class="panel">
+			<video src="love1.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">people between people
+사람 사이 사람
+salam sai salam
 
+wind between winds
+바람 사이 바람
+balam sai balam
+
+				Each person's wishes fade away
+				각자의 염원이 바래고
+				gagjaui yeom-won-i balaego
+
+				Overpainted
+				덧칠되어
+				deoschildoeeo</div></div>
+		</section>
+		<section class="panel">
+			<video src="love2.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">Hoo, when your feet become hard enough to touch
+Hoo, 발이 닿을 만큼 굳어지면
+Hoo, bal-i dah-eul mankeum gud-eojimyeon
+
+Hah, finally become my world
+Hah, 비로소 내 세상이 되어줘
+Hah, biloso nae sesang-i doeeojwo
+Ah (ah) 
+Ah (ah)
+			Ah (ah)</div></div>
+		</section>
+		<section class="panel">
+			<video src="love3.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">My little heart too
+나의 작은 마음도
+naui jag-eun ma-eumdo
+
+Naeum who grew up in it
+그 안에 자란 나음도
+geu an-e jalan na-eumdo
+
+Broken and hardened
+부서지고 굳어지고
+			buseojigo gud-eojigo</div></div>
+		</section>
+		<section class="panel">
+			<video src="love4.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">After it melts
+녹아내리고 나면
+nog-anaeligo namyeon
+
+Only then can I see my eternity
+그제서야 보이는 나의 영원
+			geujeseoya boineun naui yeong-won</div></div>
+		</section>
+		<section class="panel">
+			<video src="love1.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">love between people
+사람 사이 사랑
+salam sai salang
+
+Everybody come together, oh (ah)
+모두 함께 모여서, oh (ah)
+			modu hamkke moyeoseo, oh (ah)</div></div>
+		</section>
+		<section class="panel">
+			<video src="love2.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">If you bury your body and mind hoping for eternity, oh, oh
+영원을 바라고 몸, 마음 묻어내면, oh, oh
+			yeong-won-eul balago mom, ma-eum mud-eonaemyeon, oh, oh</div></div>
+		</section>
+		<section class="panel">
+			<video src="love3.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">Finally our world is perfect, oh
+비로소 우리의 세상이 완벽해, oh
+biloso uliui sesang-i wanbyeoghae, oh
+
+with love, with love
+사랑으로, 사랑으로
+			salang-eulo, salang-eulo</div></div>
+		</section>
+		<section class="panel">
+			<video src="love4.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">My little heart too
+나의 작은 마음도
+naui jag-eun ma-eumdo
+
+Like a small wave inside
+그 안에 작은 파도처럼
+			geu an-e jag-eun padocheoleom</div></div>
+		</section>
+		<section class="panel">
+			<video src="love1.mp4" autoplay muted loop playsinline></video>
+			<div class="content"><div class="lyrics">It broke and came rushing in
+부서지고 밀려와선
+buseojigo millyeowaseon
+
+melting into you
+네게 녹아내리고
+nege nog-anaeligo
+
+Only then can I see my eternity, oh, ooh
+그제서야 보이는 나의 영원, oh, ooh
+			geujeseoya boineun naui yeong-won, oh, ooh</div></div>
+		</section>
+	</main>
+	<audio autoplay controls preload="auto" src="love.mp3"></audio>
+	<script>
+		const audio = document.querySelector('audio');
+		const panels = [...document.querySelectorAll('.panel')];
+		let ticking = false;
+		function updateParallax() {
+			panels.forEach(panel => {
+				const video = panel.querySelector('video');
+				const rect = panel.getBoundingClientRect();
+				const top = Math.max(0, rect.top);
+				const bottom = Math.max(0, window.innerHeight - rect.bottom);
+				video.style.clipPath = `inset(${top}px 0 ${bottom}px)`;
+			});
+			ticking = false;
+		}
+		window.addEventListener('scroll', () => {
+			if (!ticking) requestAnimationFrame(updateParallax);
+			ticking = true;
+		}, { passive: true });
+		window.addEventListener('resize', updateParallax);
+		updateParallax();
+	</script>
+    
 </body>
 </html>
